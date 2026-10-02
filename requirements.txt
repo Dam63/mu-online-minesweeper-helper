@@ -1,0 +1,8 @@
+opencv-python
+numpy
+mss
+pywin32
+windows-capture
+pystray
+pillow
+psutil
