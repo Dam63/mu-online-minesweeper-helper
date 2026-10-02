@@ -1,4 +1,4 @@
-# MU Bombes — a passive "Find Bombs" overlay helper
+# MU Online Minesweeper Helper — a passive "Find Bombs" overlay helper
 
 A small Windows utility that reads the **Find Bombs** (minesweeper-style) mini-game of a MU Online client from
 a window capture, works out the safest moves, and shows them as a transparent overlay on top of the board.
@@ -42,8 +42,8 @@ any MU Online server, or their operators**. "MU" and "MU Online" are trademarks 
 ## Installation
 
 ```powershell
-git clone https://github.com/Dam63/mu-bombes.git
-cd mu-bombes
+git clone https://github.com/Dam63/mu-online-minesweeper-helper.git
+cd mu-online-minesweeper-helper
 py -3 -m pip install -r requirements.txt
 ```
 

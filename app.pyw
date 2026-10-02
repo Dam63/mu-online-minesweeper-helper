@@ -39,7 +39,7 @@ class App:
         self.q = queue.Queue()
         self.root = tk.Tk()
         r = self.root
-        r.title("MU Bombes")
+        r.title("MU Online Minesweeper Helper")
         r.geometry("560x330")
         r.resizable(False, False)
         r.attributes("-topmost", True)
@@ -64,7 +64,7 @@ class App:
         self.proc.cpu_percent(None)
         self.res_text, self.res_at = "", 0.0
         self.overlay = live.Overlay(r)
-        self.tray = pystray.Icon("mu-bombes", make_icon(False), "MU Bombes", menu=pystray.Menu(
+        self.tray = pystray.Icon("mu-online-minesweeper-helper", make_icon(False), "MU Online Minesweeper Helper", menu=pystray.Menu(
             pystray.MenuItem("Afficher", lambda: self.q.put("show"), default=True),
             pystray.MenuItem("Start", lambda: self.q.put("start")),
             pystray.MenuItem("Stop", lambda: self.q.put("stop")),
