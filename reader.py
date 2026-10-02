@@ -3,11 +3,12 @@ import os
 import cv2
 import numpy as np
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+import paths
+HERE = paths.RES
 REF_PATH = os.path.join(HERE, "assets", "ref.png")
 CELL_DIR = os.path.join(HERE, "templates", "cells")
 DIGIT_DIR = os.path.join(HERE, "templates", "digits")
-DEBUG_DIR = os.path.join(HERE, "debug")
+DEBUG_DIR = paths.DATA
 
 # Geometrie en coordonnees de l'image de reference (echelle 1.0)
 COLS, ROWS = 8, 6

@@ -3,3 +3,6 @@ __pycache__/
 debug/
 *.log
 .venv/
+build/
+dist/
+*.spec

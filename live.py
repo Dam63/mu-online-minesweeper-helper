@@ -31,7 +31,8 @@ def fmt(res, sol):
     return "\n".join(lines)
 
 
-HINT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "debug", "hint.json")
+import paths
+HINT_PATH = os.path.join(paths.DATA, "hint.json")
 PERF = {"cycle": 0.0, "locate": 0.0, "read": 0.0, "solve": 0.0, "idle": 1.0, "change_ms": None, "change_at": None, "interval": 0.15}
 
 

@@ -2,11 +2,10 @@
 import os, sys, queue, threading, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-os.chdir(HERE)
 sys.path.insert(0, HERE)
-if sys.stdout is None or sys.stderr is None:  # pythonw: pas de console
-    os.makedirs("debug", exist_ok=True)
-    sys.stdout = sys.stderr = open(os.path.join("debug", "app.log"), "a", buffering=1, encoding="utf8")
+import paths
+if sys.stdout is None or sys.stderr is None:  # pythonw / exe sans console
+    sys.stdout = sys.stderr = open(os.path.join(paths.DATA, "app.log"), "a", buffering=1, encoding="utf8")
 
 import win32api, win32event, winerror
 

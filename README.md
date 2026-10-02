@@ -33,6 +33,10 @@ the author is not responsible for bans or any other consequences.
 This project is an independent fan-made helper and is **not affiliated with, endorsed by, or connected to Webzen,
 any MU Online server, or their operators**. "MU" and "MU Online" are trademarks of their respective owners.
 
+## Download (Windows, no Python needed)
+
+Grab `MUOnlineMinesweeperHelper-windows.zip` from the [Releases](https://github.com/Dam63/mu-online-minesweeper-helper/releases) page, unzip it anywhere and run `MUOnlineMinesweeperHelper.exe`. The exe is unsigned, so Windows SmartScreen may warn about an unknown publisher (More info > Run anyway); the build is produced publicly by GitHub Actions from this repository. Settings and logs are stored in `%APPDATA%\MUOnlineMinesweeperHelper`.
+
 ## Requirements
 
 - Windows 10 (1903+) or Windows 11
