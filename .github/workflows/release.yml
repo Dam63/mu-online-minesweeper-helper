@@ -27,20 +27,18 @@ jobs:
         run: python test_solver.py
       - name: Build
         run: >
-          pyinstaller --noconfirm --clean --windowed --onedir
+          pyinstaller --noconfirm --clean --windowed --onefile
           --name MUOnlineMinesweeperHelper
           --add-data "assets;assets" --add-data "templates;templates"
           --collect-all windows_capture --hidden-import win32timezone
           app.pyw
-      - name: Zip
-        run: Compress-Archive -Path dist\MUOnlineMinesweeperHelper -DestinationPath MUOnlineMinesweeperHelper-windows.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: MUOnlineMinesweeperHelper-windows
-          path: MUOnlineMinesweeperHelper-windows.zip
+          name: MUOnlineMinesweeperHelper
+          path: dist/MUOnlineMinesweeperHelper.exe
       - name: Publish release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: MUOnlineMinesweeperHelper-windows.zip
+          files: dist/MUOnlineMinesweeperHelper.exe
           generate_release_notes: true

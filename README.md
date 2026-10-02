@@ -35,7 +35,7 @@ any MU Online server, or their operators**. "MU" and "MU Online" are trademarks 
 
 ## Download (Windows, no Python needed)
 
-Grab `MUOnlineMinesweeperHelper-windows.zip` from the [Releases](https://github.com/Dam63/mu-online-minesweeper-helper/releases) page, unzip it anywhere and run `MUOnlineMinesweeperHelper.exe`. The exe is unsigned, so Windows SmartScreen may warn about an unknown publisher (More info > Run anyway); the build is produced publicly by GitHub Actions from this repository. Settings and logs are stored in `%APPDATA%\MUOnlineMinesweeperHelper`.
+Grab `MUOnlineMinesweeperHelper.exe` from the [Releases](https://github.com/Dam63/mu-online-minesweeper-helper/releases) page and run it (single file, nothing to install; the first launch takes a few seconds to unpack). The exe is unsigned, so Windows SmartScreen may warn about an unknown publisher (More info > Run anyway); the build is produced publicly by GitHub Actions from this repository. Settings and logs are stored in `%APPDATA%\MUOnlineMinesweeperHelper`.
 
 ## Requirements
 
