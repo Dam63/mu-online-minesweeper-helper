@@ -11,7 +11,17 @@ import reader, solver
 from capture import FrameStream
 from overlay import KEY, visible_bounds, find_hwnd, GWL_EXSTYLE, WS_EX_LAYERED, WS_EX_TRANSPARENT, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE
 
-TITLE = "PartyMu.NET"
+TITLES = ("PartyMu.NET", "Dart MU")  # window-title fragments of supported servers
+TITLE = TITLES[0]
+
+
+def detect_title():
+    global TITLE
+    for t in TITLES:
+        if find_hwnd(t):
+            TITLE = t
+            break
+    return TITLE
 HEADER = 40
 ALPHA = 0.6  # transparence globale du calque (1.0 = opaque)
 STATE = {"paused": False, "seq": 0, "ok": False, "msg": "demarrage...", "ts": 0.0}
@@ -259,7 +269,7 @@ class Session:
         if self.running:
             return
         STATE.update(ok=False, msg="demarrage...", ts=0.0, geo=None)
-        self.stream = FrameStream(TITLE)
+        self.stream = FrameStream(detect_title())
         self.stop_evt = threading.Event()
         threading.Thread(target=worker, args=(self.stream, self.stop_evt), daemon=True).start()
 
@@ -273,7 +283,7 @@ class Session:
 
 
 def main():
-    stream = FrameStream(TITLE)
+    stream = FrameStream(detect_title())
     stop = threading.Event()
     threading.Thread(target=worker, args=(stream, stop), daemon=True).start()
     ov = Overlay()

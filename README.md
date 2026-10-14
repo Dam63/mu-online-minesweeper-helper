@@ -3,7 +3,7 @@
 A small Windows utility that reads the **Find Bombs** (minesweeper-style) mini-game of a MU Online client from
 a window capture, works out the safest moves, and shows them as a transparent overlay on top of the board.
 
-> **Status:** early / experimental. Tested on a single client (PartyMu.NET, 4K display at 150 % scaling).
+> **Status:** early / experimental. Tested on PartyMu.NET and Dart MU (4K display at 150 % scaling). Other servers can be added by listing a window-title fragment in `TITLES` in `live.py`.
 
 ## What it does
 
