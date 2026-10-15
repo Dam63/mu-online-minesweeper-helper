@@ -11,7 +11,7 @@ import reader, solver
 from capture import FrameStream
 from overlay import KEY, visible_bounds, find_hwnd, GWL_EXSTYLE, WS_EX_LAYERED, WS_EX_TRANSPARENT, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE
 
-TITLES = ("PartyMu.NET", "Dart MU")  # window-title fragments of supported servers
+TITLES = ("PartyMu.NET", "[Dart MU]")  # window-title fragments of supported servers
 TITLE = TITLES[0]
 
 
