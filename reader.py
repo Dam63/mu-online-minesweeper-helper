@@ -205,7 +205,7 @@ def classify_cell(norm, r, c, templates, max_dist=0.25):
     return lab, d
 
 
-def read_number(norm, box, templates, max_dist=0.3):
+def read_number(norm, box, templates, max_dist=0.18):
     x0, y0, x1, y1 = box
     g = _gray(norm[y0:y1, x0:x1])
     m = (g > 110).astype(np.uint8)

@@ -103,7 +103,7 @@ def worker(stream, stop):
             tr = time.perf_counter()
             res = reader.read_board(frame, geo)
             t_read = time.perf_counter() - tr
-            if res["unknown"]:  # curseur ou symbole inconnu devant des cases: on garde le dernier resultat
+            if res["unknown"] or not (res["remaining"] or "").isdigit():  # curseur ou symbole inconnu devant des cases: on garde le dernier resultat
                 STATE.update(geo=geo, ts=ts, ok=True, paused=True, pause_cells=res["unknown"])
                 pending = None
                 continue
