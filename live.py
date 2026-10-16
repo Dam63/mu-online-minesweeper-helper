@@ -11,6 +11,7 @@ import reader, solver
 from capture import FrameStream
 from overlay import KEY, visible_bounds, find_hwnd, GWL_EXSTYLE, WS_EX_LAYERED, WS_EX_TRANSPARENT, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE
 
+TOTAL_MINES = 11  # mines on every Find Bombs board
 TITLES = ("PartyMu.NET", "[Dart MU]")  # window-title fragments of supported servers
 TITLE = TITLES[0]
 
@@ -24,7 +25,7 @@ def detect_title():
     return TITLE
 HEADER = 40
 ALPHA = 0.6  # transparence globale du calque (1.0 = opaque)
-STATE = {"paused": False, "seq": 0, "ok": False, "msg": "demarrage...", "ts": 0.0}
+STATE = {"mode": "guess", "paused": False, "seq": 0, "ok": False, "msg": "demarrage...", "ts": 0.0}
 
 
 def fmt(res, sol):
@@ -103,12 +104,13 @@ def worker(stream, stop):
             tr = time.perf_counter()
             res = reader.read_board(frame, geo)
             t_read = time.perf_counter() - tr
-            if res["unknown"] or not (res["remaining"] or "").isdigit():  # curseur ou symbole inconnu devant des cases: on garde le dernier resultat
+            fixed = STATE.get("mode") == "fixed"
+            if res["unknown"] or (not fixed and not (res["remaining"] or "").isdigit()):  # curseur ou symbole inconnu devant des cases: on garde le dernier resultat
                 STATE.update(geo=geo, ts=ts, ok=True, paused=True, pause_cells=res["unknown"])
                 pending = None
                 continue
             STATE["paused"] = False
-            key = (tuple(map(tuple, res["grid"])), res["remaining"])
+            key = (tuple(map(tuple, res["grid"])), res["remaining"], fixed)
             if key != pending:  # il faut deux lectures identiques (evite les animations)
                 pending = key
                 STATE.update(geo=geo, ts=ts)
@@ -124,7 +126,9 @@ def worker(stream, stop):
                 # les bombes posees par le joueur ne sont pas interpretees: ce sont des cases fermees comme les autres
                 placed = {(r, c) for r, row in enumerate(res["grid"]) for c, v in enumerate(row) if v == "B"}
                 grid = [["#" if v == "B" else v for v in row] for row in res["grid"]]
-                sol = solver.solve(grid, None if rem is None else rem + len(placed), ignore=placed)
+                # fixed: total constant (counter ignored); the solver subtracts placed and deduced mines itself
+                total = TOTAL_MINES if fixed else (None if rem is None else rem + len(placed))
+                sol = solver.solve(grid, total, ignore=placed)
                 sol["placed"] = placed
                 msg = "%d sures, %d bombes" % (len(sol["safe"]), len(sol["mines"]))
             t_solve = time.perf_counter() - ts0

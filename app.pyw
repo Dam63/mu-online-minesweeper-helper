@@ -58,6 +58,13 @@ class App:
         self.b_stop = tk.Button(row, text="Stop", width=9, command=self.stop, state="disabled")
         self.b_start.pack(side="left", padx=4)
         self.b_stop.pack(side="left", padx=4)
+        self.mode = tk.StringVar(value=live.STATE["mode"])
+        mrow = tk.Frame(r)
+        mrow.pack(pady=(6, 0), before=self.perf)
+        tk.Label(mrow, text="Total bombes :", font=("Segoe UI", 9)).pack(side="left")
+        for txt, val in (("guess (compteur du jeu)", "guess"), ("fixed (%d)" % live.TOTAL_MINES, "fixed")):
+            tk.Radiobutton(mrow, text=txt, value=val, variable=self.mode, font=("Segoe UI", 9),
+                           command=lambda: live.STATE.update(mode=self.mode.get())).pack(side="left", padx=4)
         r.protocol("WM_DELETE_WINDOW", r.withdraw)  # la croix reduit dans la zone de notification
         self.proc = psutil.Process()
         self.proc.cpu_percent(None)
