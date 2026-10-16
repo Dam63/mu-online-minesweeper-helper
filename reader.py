@@ -247,7 +247,7 @@ def read_board(frame, geo=None, save_unknown=True):
             row.append(v)
         grid.append(row)
     rem, _ = read_number(norm, BOX_REM, digits_t)
-    score, _ = read_number(norm, BOX_SCORE, digits_t)
+    score, _ = read_number(norm, BOX_SCORE, digits_t, max_dist=0.3)  # display only
     return {"grid": grid, "remaining": rem, "score": score, "geo": geo, "norm": norm, "unknown": unknown,
             "frame_w": frame.shape[1], "frame_h": frame.shape[0]}
 
